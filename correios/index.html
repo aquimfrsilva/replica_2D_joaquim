@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correios - Página Inicial</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <img src="/api/placeholder/150/50" alt="Logo dos Correios">
+            <button class="login-btn">Fazer Login</button>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <a href="#">Rastreamento</a>
+            <a href="#">Busca CEP</a>
+            <a href="#">Preços e Prazos</a>
+            <a href="#">Agências</a>
+            <a href="#">Correios Log+</a>
+        </div>
+    </nav>
+    <!-- Carrossel -->
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item" style="background-color: #003399;">
+                <img src="/api/placeholder/1200/400" alt="Promoção 1">
+            </div>
+            <div class="carousel-item" style="background-color: #FFCC00;">
+                <img src="/api/placeholder/1200/400" alt="Promoção 2">
+            </div>
+            <div class="carousel-item" style="background-color: #0066CC;">
+                <img src="/api/placeholder/1200/400" alt="Promoção 3">
+            </div>
+        </div>
+        <button class="carousel-control carousel-prev">❮</button>
+        <button class="carousel-control carousel-next">❯</button>
+    </div>
+
+    <main class="container">
+        <div class="main-services">
+            <!-- Seção de Rastreamento -->
+            <div class="tracking-section">
+                <h2>Acompanhe seu objeto</h2>
+                <p>Digite o código de rastreamento para acompanhar sua encomenda</p>
+                <div class="tracking-input">
+                    <input type="text" placeholder="AA123456789BR">
+                    <button>Rastrear</button>
+                </div>
+            </div>
+
+            <!-- Seção de Serviços Rápidos -->
+            <div class="quick-services">
+                <h2>Acesso Rápido</h2>
+                <div class="quick-services-grid">
+                    <div class="quick-service-item">
+                        <h3>Sobre</h3>
+                        <p>Conheça os Correios</p>
+                    </div>
+                    <div class="quick-service-item">
+                        <h3>App Correios</h3>
+                        <p>Baixe nosso aplicativo</p>
+                    </div>
+                    <div class="quick-service-item">
+                        <h3>Minhas Importações</h3>
+                        <p>Gerencie seus pedidos</p>
+                    </div>
+                    <div class="quick-service-item">
+                        <h3>Calculadora</h3>
+                        <p>Preços e prazos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="posting-section">
+        <h2>Agilizar Postagem</h2>
+        <p>Calcule o preço e prazo da sua encomenda preenchendo as informações abaixo</p>
+        
+        <div class="posting-grid">
+            <div class="input-group">
+                <label for="origin-cep">CEP de Origem</label>
+                <input 
+                    type="text" 
+                    id="origin-cep" 
+                    placeholder="00000-000"
+                    maxlength="9"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 45">
+            </div>
+            <div class="input-group">
+                <label for="destination-cep">CEP de Destino</label>
+                <input 
+                    type="text" 
+                    id="destination-cep" 
+                    placeholder="00000-000"
+                    maxlength="9"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 45">
+            </div>
+        </div>
+
+        <div class="posting-dimensions">
+            <div class="input-group">
+                <label for="height">Altura (cm)</label>
+                <input 
+                    type="number" 
+                    id="height" 
+                    placeholder="0"
+                    min="0"
+                    max="100">
+            </div>
+            <div class="input-group">
+                <label for="width">Largura (cm)</label>
+                <input 
+                    type="number" 
+                    id="width" 
+                    placeholder="0"
+                    min="0"
+                    max="100">
+            </div>
+            <div class="input-group">
+                <label for="length">Comprimento (cm)</label>
+                <input 
+                    type="number" 
+                    id="length" 
+                    placeholder="0"
+                    min="0"
+                    max="100">
+            </div>
+        </div>
+    </div>
+</main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Correios. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidade do Carrossel
+        const carousel = document.querySelector('.carousel-inner');
+        const items = document.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+
+        // Configurar largura inicial
+        items.forEach(item => {
+            item.style.minWidth = '100%';
+        });
+
+        // Botões de navegação
+        document.querySelector('.carousel-next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+        });
+
+        document.querySelector('.carousel-prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateCarousel();
+        });
+
+        // Atualizar posição do carrossel
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Auto-play do carrossel
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+        }, 5000);
+
+        // Funcionalidade do botão de login
+        document.querySelector('.login-btn').addEventListener('click', () => {
+            alert('Sistema de login em desenvolvimento');
+        });
+
+        // Funcionalidade do botão de rastreamento
+        document.querySelector('.tracking-input button').addEventListener('click', () => {
+            const code = document.querySelector('.tracking-input input').value;
+            if(code) {
+                alert(`Rastreando objeto: ${code}`);
+            } else {
+                alert('Por favor, digite um código de rastreamento');
+            }
+        });
+    </script>
+</body>
+</html>
